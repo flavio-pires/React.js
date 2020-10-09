@@ -1,10 +1,33 @@
-.nav{
-    width: 1024px;
-    margin: auto;
+nav{
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+}
+
+.menu{
+    list-style: none;
+    display: flex;
+    justify-content: space-between;
+    width: 300px;
+}
+
+.menu .link{
+    text-decoration: none;
+    color: #4b2124;
+    font-weight: bold;
 }
 
 .header{
     background-color: #98D2DE;
-    padding-top: 50px;
-    padding-bottom: 50px;
+    padding-top: 30px;
+    padding-bottom: 30px;
+}
+
+.align{
+    width: 1024px;
+    margin: auto;
+}
+
+.align h3{
+    padding-top: 30px;
 }

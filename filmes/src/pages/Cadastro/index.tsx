@@ -5,14 +5,16 @@ import '../../assets/style/global.css';
 import Input from '../../components/input/index';
 import Button from '../../components/button/index';
 
-function Login() {
+function Cadastro() {
   return (
     <div>
-      <Header description="Faça o login e acesse a Coletanea"/>
+      <Header description="Faça o cadastro para o acesso"/>
         <div className="centro">
-          <div className="login">
-            <h3>Login</h3>
+          <div className="cadastro">
+            <h3>Cadastro</h3>
+            <Input type="text" name="nome" label="Nome"/>
             <Input type="text" name="email" label="Email"/>
+            <Input type="" name="permissao" label="Permissão"/>
             <Input type="password" name="senha" label="Senha"/>
             <Button value="Entrar"/>
           </div>
@@ -22,4 +24,4 @@ function Login() {
   );
 }
 
-export default Login;
+export default Cadastro;

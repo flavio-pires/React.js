@@ -7,14 +7,18 @@ function Footer() {
   return (
     <div className="principal">
       <div className="rodape">
-        <footer>
-          <img src={logo} alt="logo da coletanea"/>
-          <hr/>
-          <p>Company Inc., 8901 Marmora Road, Glasgow, D04 89GR</p>
-          <p>Call us now toll free: (800)2345-6789</p>
-          <p>Customer support: support@demolink.org</p>
-          <p>Skype: sample-username</p>
-        </footer>
+        <div className="alignfooter">
+          <footer>
+            <img src={logo} alt="logo da coletanea"/>
+            <hr/>
+            <div className="info">
+              <p>Company Inc., 8901 Marmora Road, Glasgow, D04 89GR</p>
+              <p>Call us now toll free: (800)2345-6789</p>
+              <p>Customer support: support@demolink.org</p>
+              <p>Skype: sample-username</p>
+            </div>
+          </footer>
+        </div>
       </div>
     </div>
   );
