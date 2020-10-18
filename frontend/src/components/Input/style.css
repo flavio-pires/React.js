@@ -1,0 +1,13 @@
+input {
+    width: 400px;
+    height: 50px;
+    border: 1px solid #000000;
+    box-sizing: border-box;
+    margin: 20px 0px;
+}
+
+label {
+    font-size: 20px;
+    font-weight: normal;
+    color: #4b2142;
+}

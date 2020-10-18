@@ -1,0 +1,16 @@
+******* React ********
+
+----Para criar----
+npm create react-app teste
+yarn create react-app nome --template typescript
+
+----Pastas para Deletar----
+-no public deixar apenas o index.html
+-no src deixar apenas App.tsx, index.tsx e react-app-env.d.tsx
+-deletar as referencias (imports)
+-deletar oq não precisa do index.html (olhar no filmes)
+
+
+----Add Routes----
+yarn add react-router-dom
+yarn add @types/react-router-dom -D

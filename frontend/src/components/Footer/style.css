@@ -1,0 +1,21 @@
+.footer{
+  background: #F6511D;
+  color: #fff;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  height: 250px;
+}
+
+.footer img {
+  width: 177px;
+  height: 62px;
+  margin-left: 100px;
+  
+}
+
+hr{
+  width: 200px;
+  border: 1px solid #fff;
+  transform: rotate(90deg);
+}

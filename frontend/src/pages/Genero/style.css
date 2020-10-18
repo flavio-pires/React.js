@@ -1,0 +1,28 @@
+.theater {
+    width: 100px;
+    height: 100px;
+}
+
+.icon{
+    width: 35px;
+    height: 35px;
+}
+
+main{
+    width: 1024px;
+    margin: auto;
+}
+
+thead{
+    display: none;
+}
+
+td{
+    padding: 0 40px 0 40px;
+}
+
+form{
+    display: flex;
+    justify-content: space-between;
+    margin: 50px 0;
+}

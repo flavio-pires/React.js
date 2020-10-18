@@ -1,0 +1,51 @@
+h1 {
+    font-size: 36px;
+    margin: 25px;
+}
+
+h2 {
+    font-size: 24px;
+    margin-bottom: 25px;
+}
+
+p {
+    font-size: 14px;
+}
+
+.home {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    flex-direction: column;
+}
+
+#filme {
+    width: 100px;
+    height: 100px;
+    margin-bottom: 20px;
+}
+
+#theater {
+    width: 90px;
+    height: 90px;
+    margin-bottom: 20px;
+}
+
+.conteudo{
+    display: flex;
+    padding: 4em 0 4em 0;
+}
+.text{
+    width: 400px;
+    height: 164px;
+    margin-right: 100px;
+}
+
+.texto {
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+    margin-left: 10em;
+    margin-right: 10em;
+}
