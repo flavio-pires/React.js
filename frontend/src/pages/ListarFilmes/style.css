@@ -1,0 +1,13 @@
+
+main{
+    width: 1024px;
+    margin: auto;
+}
+
+thead{
+    display: none;
+}
+
+td{
+    padding: 0 40px 0 40px;
+}

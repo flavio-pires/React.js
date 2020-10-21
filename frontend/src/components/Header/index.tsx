@@ -1,18 +1,34 @@
-import React from 'react';
+import React, { useState, useEffect } from 'react';
 import logo from '../../assets/images/logo.png';
 import '../../assets/global.css';
 import './style.css';
 import {Link, useHistory} from 'react-router-dom';
 
-// description = props obrigatoria
-// text = props não obrigatoria (é a ?)
-// children = tudo oq é escrito dentro das tags do header na página
 interface HeaderProps {
   description: string;
-  // text?: string
 }
 
-const Header: React.FunctionComponent<HeaderProps> = (props) => {
+const Header: React.FC<HeaderProps> = (props) => {
+  
+  const [Usuario, setUsuario] = useState('');
+
+  const refresh = () => {
+    fetch('http://localhost:5000/api/Usuarios/BuscarPorId', {
+      method: 'GET',
+      headers: {
+        authorization: 'Bearer ' + localStorage.getItem('token-filmes')
+      }
+    })
+      .then(response => response.json())
+      .then(dados => {
+        setUsuario(dados.permissao);
+      })
+      .catch(erro => console.error(erro));
+  }
+
+  useEffect(() => {
+    refresh();
+  });
 
   let history = useHistory()
 
@@ -23,6 +39,7 @@ const Header: React.FunctionComponent<HeaderProps> = (props) => {
 
   const menu = () => {
     const token = localStorage.getItem('token-filmes');
+
     if (token === undefined || token === null) {
       return(
         <ul className="menu">
@@ -32,7 +49,7 @@ const Header: React.FunctionComponent<HeaderProps> = (props) => {
         </ul>
       )
     }
-    else{
+    else if(Usuario == 'Administrador'){ 
       return(
         <ul className="menu">
         <li><Link to="/" className="link">Home</Link></li>
@@ -41,6 +58,18 @@ const Header: React.FunctionComponent<HeaderProps> = (props) => {
         <li><Link to="/genero" className="link">Gêneros</Link></li>
         <li><Link to="" onClick={event => {event.preventDefault(); logout()}}>Logout</Link></li>
       </ul>
+      )
+    }
+    else{
+      return (
+        <div className="menu">
+          <a><Link to="/" className="link">Home</Link></a>
+          <a><Link to="/listarfilmes" className="link">Filmes</Link></a>
+          <a><Link to='' onClick={(event) => {
+            event.preventDefault();
+            logout();
+          }}>Logout</Link></a> <br />
+        </div>
       )
     }
   }
@@ -54,8 +83,6 @@ const Header: React.FunctionComponent<HeaderProps> = (props) => {
             {menu()}
           </nav>
           <h3>{props.description}</h3>
-          {/* {props.children}
-          {props.text && <p>{props.text}</p>} */}
         </div>
       </div>
     </div>

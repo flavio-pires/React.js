@@ -34,7 +34,7 @@ function Genero() {
   }
 
   const deletar = (id:number) => {
-    if (window.confirm('Deseja excluir o Genero?')) {
+    if (window.confirm('Deseja excluir o Gênero?')) {
       fetch('http://localhost:5000/api/generos/' + id, {
         method: 'DELETE',
         headers: {
@@ -114,8 +114,8 @@ function Genero() {
                     <td>{item.idGenero}</td>
                     <td>{item.nome}</td>
                     <td>
-                      <img className="icon" src={refresh} onClick={() => update(item.idGenero)} alt=""/>
-                      <img className="icon" src={trash} onClick={() => deletar(item.idGenero)} alt=""/>
+                      <img className="icon" src={refresh} onClick={() => update(item.idGenero)} alt="Atualizar"/>
+                      <img className="icon" src={trash} onClick={() => deletar(item.idGenero)} alt="Deletar"/>
                     </td>
                   </tr>
                 )

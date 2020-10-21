@@ -4,95 +4,111 @@ import Footer from '../../components/Footer';
 import Button from '../../components/Button';
 import Input from '../../components/Input';
 import cinema from '../../assets/images/cinema.png';
-import trash from '../../assets/images/trash.png';
-import refresh from '../../assets/images/refresh.png';
+import imgtrash from '../../assets/images/trash.png';
+import imgrefresh from '../../assets/images/refresh.png';
 import '../../assets/global.css'
 import './style.css'
 
 function Filmes() {
   const [idFilme, setIdFilme] = useState(0);
-  const [titulo, setTitulo] = useState('');
-  const [genero, setGenero] = useState('');
-  const [filmes, setFilmes] = useState([]);
-  const [generos, setGeneros] = useState([]);
+    const [Filme, setFilme] = useState('');
+    const [Filmes, setFilmes] = useState([]);
+    const [genero, setGenero] = useState('');
+    const [generos, setGeneros] = useState([]);
 
+    useEffect(() => {
+        listar();
+        listarGeneros();
+    }, []);
 
-  useEffect(() => {
-    listar();
-  }, [])
+    const listarGeneros = () => {
+        fetch('http://localhost:5000/api/Generos', {
+            method: 'GET',
+            headers: {
 
-  const listar = () => {
-    fetch('http://localhost:5000/api/filmes',{
-      method: 'GET',
-      headers: {
-        authorization: 'Bearer' + localStorage.getItem('token-filmes')
-      }
-    })
-    .then(response => response.json())
-    .then(dados => {
-      setFilmes(dados);
-    })
-    .catch(erro => console.error(erro))
-  }
-
-  const deletar = (id:number) => {
-    if (window.confirm('Deseja excluir o Filme?')) {
-      fetch('http://localhost:5000/api/filmes/' + id, {
-        method: 'DELETE',
-        headers: {
-          authorization: 'Bearer' + localStorage.getItem('token-filmes')
-        }
-      })
-      .then(response => response.json())
-      .then(dados => {
-        listar()
-      })
-      .catch(erro => console.error(erro))
+                authorization: 'Bearer ' + localStorage.getItem('token-filmes')
+            }
+        })
+            .then(response => response.json())
+            .then(dados => {
+                setGeneros(dados);
+            })
+            .catch(erro => console.error(erro));
     }
-  }
 
-  const update = (id:number) => {
-    fetch('http://localhost:5000/api/filmes/' + id, {
-      method: 'GET',
-      headers: {
-        authorization: 'Bearer' + localStorage.getItem('token-filmes')
-      }
-    })
-    .then(response => response.json())
-    .then(dados => {
-      setIdFilme(dados.idFilme);
-      setIdFilme(dados.titulo);
-      setIdFilme(dados.idGenero);
-    })
-    .catch(erro => console.error(erro))
-  }
+    const listar = () => {
+        fetch('http://localhost:5000/api/Filmes', {
+            method: 'GET',
+            headers: {
 
-  const salvar = () => {
-    const form = {
-      titulo: titulo,
-      genero: genero
-    };
+                authorization: 'Bearer ' + localStorage.getItem('token-filmes')
+            }
+        })
 
-    const method = (idFilme === 0? 'POST' : 'PUT');
-    const urlRequest = (idFilme === 0? 'http://localhost:5000/api/filmes' : 'http://localhost:5000/api/filmes/' + idFilme);
+            .then(response => response.json())
+            .then(dados => {
+                setFilmes(dados);
+            })
+            .catch(erro => console.error(erro));
+    }
 
-    fetch(urlRequest, {
-      method: method,
-      body:JSON.stringify(form),
-      headers: {
-        'content-type': 'application/json',
-        authorization: 'Bearer' + localStorage.getItem('token-filmes')
-      }
-    })
-    .then(() => {
-      alert('Filme cadastrado')
-      setIdFilme(0);
-      setTitulo('');
-      setGenero('');
-      listar()
-    })
-    .catch(erro => console.error(erro))
-  }
+    const trash = (id: number) => {
+        if (window.confirm('Deseja excluir o Filme?')) {
+            fetch('http://localhost:5000/api/Filmes/' + id, {
+                method: 'DELETE',
+                headers: {
+                    authorization: 'Bearer ' + localStorage.getItem('token-filmes')
+                }
+
+            })
+                .then(response => response.json())
+                .then(dados => {
+                    listar();
+                })
+                .catch(erro => console.error(erro));
+        }
+    }
+
+    const refresh = (id: number) => {
+        fetch('http://localhost:5000/api/Filmes/' + id, {
+            method: 'GET',
+            headers: {
+                authorization: 'Bearer ' + localStorage.getItem('token-filmes')
+            }
+        })
+            .then(response => response.json())
+            .then(dados => {
+                setIdFilme(dados.idFilme);
+                setFilme(dados.titulo);
+            })
+            .catch(erro => console.error(erro));
+    }
+
+    const salvar = () => {
+        const form = {
+            titulo: Filme,
+            IdGenero: genero
+        };
+
+        const method = (idFilme === 0 ? 'POST' : 'PUT');
+        const urlRequest = (idFilme === 0 ? 'http://localhost:5000/api/Filmes' : 'http://localhost:5000/api/Filmes/' + idFilme);
+
+        fetch(urlRequest, {
+            method: method,
+            body: JSON.stringify(form),
+            headers: {
+                'content-type': 'application/json',
+                authorization: 'Bearer ' + localStorage.getItem('token-filmes')
+            }
+        })
+            .then(() => {
+                alert('Filme cadastrado');
+                setIdFilme(0);
+                setFilme('');
+                listar();
+            })
+            .catch(erro => console.error(erro));
+    }
 
   return (
     <div className="Filme">
@@ -114,14 +130,14 @@ function Filmes() {
           </thead>
           <tbody>
             {
-              filmes.map((item:any) => {
+              Filmes.map((item:any) => {
                 return(
                   <tr key={item.idFilme}>
                     <td>{item.titulo}</td>
                     <td>{item.genero}</td>
                     <td>
-                      <img className="icon" src={refresh} onClick={() => update(item.idFilme)} alt=""/>
-                      <img className="icon" src={trash} onClick={() => deletar(item.idFilme)} alt=""/>
+                      <img className="icon" src={imgrefresh} onClick={() => refresh(item.idFilme)} alt="Atualizar"/>
+                      <img className="icon" src={imgtrash} onClick={() => trash(item.idFilme)} alt="Deletar"/>
                     </td>
                   </tr>
                 )
@@ -133,7 +149,7 @@ function Filmes() {
           event.preventDefault();
           salvar();
         }}>
-          <Input type="text" label="Nome do Filme" name="labelFilme" placeholder="Título do Filme" value= {titulo} onChange={e => setTitulo(e.target.value)}/>
+          <Input type="text" label="Cadastrar filme" name="labelFilme" placeholder="Título do Filme" value= {Filme} onChange={e => setFilme(e.target.value)}/>
           <div className="select">
             <select id="selectGenero" name="genero" onChange={e => setGenero(e.target.value)} value={genero}>
               <option value="0">Selecione um Gênero</option>

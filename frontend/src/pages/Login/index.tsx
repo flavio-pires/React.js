@@ -38,7 +38,7 @@ function Login() {
         alert('Senha ou e-mail inválido');
       }
     })
-    .catch(err => console.error(err))
+    .catch(erro => console.error(erro))
   }
 
   return (

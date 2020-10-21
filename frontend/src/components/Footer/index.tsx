@@ -1,12 +1,12 @@
 import React from 'react';
 import '../../assets/global.css';
 import './style.css';
-import logonegativa from '../../assets/images/logonegativo.png';
+import logo from '../../assets/images/logonegativo.png';
 
 function Footer() {
   return (
     <div className="footer">
-      <img src={logonegativa} alt="Logotipo de Filmes Collection"/>
+      <img src={logo} alt="Logotipo de Filmes"/>
       <hr/>
       <div>
         <p>Company Inc., 8901 Marmora Road, Glasgow, D04 89GR</p>

@@ -46,6 +46,5 @@ p {
     flex-direction: column;
     justify-content: center;
     align-items: center;
-    margin-left: 10em;
-    margin-right: 10em;
+    width: 1000px;
 }
